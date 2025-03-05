@@ -3,32 +3,40 @@
 # Graphics card
 CARD=$(basename "$(find /sys/class/backlight/* | head -n 1)")
 
+# Get current brightness
+get_backlight() {
+    if [[ "$CARD" == *"intel_"* ]]; then
+        xbacklight -get
+    else
+        brightnessctl g | awk '{print int($1)}'
+    fi
+}
 
 # Increase brightness
 inc_backlight() {
-	if [[ "$CARD" == *"intel_"* ]]; then
-		xbacklight -inc 5
-	else
-		light -A 5
-	fi
+    if [[ "$CARD" == *"intel_"* ]]; then
+        xbacklight -inc 5
+    else
+        brightnessctl s +5%
+    fi
 }
 
 # Decrease brightness
 dec_backlight() {
-	if [[ "$CARD" == *"intel_"* ]]; then
-		xbacklight -dec 5
-	else
-		light -U 5
-	fi
+    if [[ "$CARD" == *"intel_"* ]]; then
+        xbacklight -dec 5
+    else
+        brightnessctl s 5%- 
+    fi
 }
 
 # Execute accordingly
 if [[ "$1" == "--get" ]]; then
-	get_backlight
+    get_backlight
 elif [[ "$1" == "--up" ]]; then
-	inc_backlight
+    inc_backlight
 elif [[ "$1" == "--down" ]]; then
-	dec_backlight
+    dec_backlight
 else
-	get_backlight
+    get_backlight
 fi
