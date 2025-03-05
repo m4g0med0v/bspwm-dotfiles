@@ -104,6 +104,7 @@ BASE_PACKAGES = [
     "vulkan-intel",  # Vulkan-драйвер для видеокарт Intel.
     "intel-ucode",  # обновления микрокода для процессоров Intel.
     "breeze",  # тема оформления.
+    "xdg-user-dirs",
 ]
 
 DEV_PACKAGES = [
@@ -148,6 +149,7 @@ AUR_PACKAGES = [
     "i3lock-color",  # утилита блокировки экрана с кастомизацией.
     "ptpython",  # улучшенный интерактивный Python-интерпретатор.
     "visual-studio-code-bin",  # редактор кода
+    "auto-cpufreq",
 ]
 
 GNOME_OFFICIAL_TOOLS = [

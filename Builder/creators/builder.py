@@ -5,8 +5,9 @@ from logger import Logger, LoggerStatus
 
 from creators.daemons import Daemons
 from creators.drivers import GraphicDrivers
+from creators.laptop import LaptopConfigure
 from creators.patches import PatchSystemBugs
-from creators.software import AurBuilder, FirefoxCustomize
+from creators.software import AurBuilder, PythonBuilder
 
 # TODO: Implement error handling for package installation
 
@@ -24,7 +25,12 @@ class SystemConfiguration:
         if args[3]:
             SystemConfiguration.__start_option_4()
         if args[4]:
+            SystemConfiguration.__start_option_5()
+        if args[5]:
             GraphicDrivers.build()
+        if args[6]:
+            SystemConfiguration.__start_option_6()
+            ...
         # TODO: The process should not be repeated when reassembling, important components should only be updated with new ones
         Daemons.enable_all_daemons()
         PatchSystemBugs.enable_all_patches()
@@ -47,7 +53,7 @@ class SystemConfiguration:
         AurBuilder.build()
         SystemConfiguration.__install_pacman_package(packages.BASE_PACKAGES)
         SystemConfiguration.__install_aur_package(packages.AUR_PACKAGES)
-        FirefoxCustomize.build()
+        # FirefoxCustomize.build()
 
     @staticmethod
     def __start_option_4():
@@ -58,6 +64,19 @@ class SystemConfiguration:
         SystemConfiguration.__install_pacman_package(
             packages.GNOME_OFFICIAL_TOOLS
         )
+
+    @staticmethod
+    def __start_option_5():
+        Logger.add_record(
+            "[+] Configuring Laptop", status=LoggerStatus.SUCCESS
+        )
+        LaptopConfigure.configure_touchpad()
+        LaptopConfigure.install_cpufreq()
+
+    @staticmethod
+    def __start_option_6():
+        Logger.add_record("[+] Install Python", status=LoggerStatus.SUCCESS)
+        PythonBuilder.build()
 
     @staticmethod
     # TODO: Make a universal function for installing packages
@@ -84,12 +103,9 @@ class SystemConfiguration:
         Logger.add_record(
             "[+] Create default directories", status=LoggerStatus.SUCCESS
         )
-        default_folders = (
-            "~/Videos ~/Documents ~/Downloads " + "~/Music ~/Desktop"
-        )
+        os.system("xdg-user-dirs-update")
         os.system("mkdir -p ~/.config")
-        os.system(f"mkdir -p {default_folders}")
-        os.system("cp -r Images/ ~/")
+        os.system("cp -r Images/ ~/Pictures")
 
     @staticmethod
     def __copy_bspwm_dotfiles():

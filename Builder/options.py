@@ -35,7 +35,23 @@ class UserInterface:
         print("4) Install Dev Dependencies? [Y/n] ", end="")
         option_4 = UserInterface.is_verify_response(input())
 
-        print("5) Install Nvidia & Intel Drivers & AMD Drivers ? [Y/n] ", end="")
+        print("5) Do you have a Laptop? [Y/n] ", end="")
         option_5 = UserInterface.is_verify_response(input())
 
-        return [option_1, option_2, option_3, option_4, option_5]
+        print(
+            "6) Install Nvidia & Intel Drivers & AMD Drivers ? [Y/n] ", end=""
+        )
+        option_6 = UserInterface.is_verify_response(input())
+
+        print("7) Do you want to install python? [Y/n] ", end="")
+        option_7 = UserInterface.is_verify_response(input())
+
+        return [
+            option_1,
+            option_2,
+            option_3,
+            option_4,
+            option_5,
+            option_6,
+            option_7,
+        ]
