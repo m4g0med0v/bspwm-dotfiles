@@ -1,4 +1,4 @@
 #!/bin/bash
 
 # Random Wallpaper Script
-feh --randomize --no-fehbg --bg-fill $HOME/Images/
+feh --randomize --no-fehbg --bg-fill $HOME/Pictures/

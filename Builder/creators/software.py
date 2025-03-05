@@ -28,7 +28,7 @@ class PythonBuilder:
         cpu_cores = int(os.cpu_count() * 0.5)
 
         cd_download = "cd ~/Downloads"
-        curl = f'curl -L -o "Python-{python_version}.tar.xz" "https://www.python.org/ftp/python/{python_version}/Python-{python_version}.tar.xz'
+        curl = f'curl -L -o "Python-{python_version}.tar.xz" "https://www.python.org/ftp/python/{python_version}/Python-{python_version}.tar.xz"'
         configure = f"./configure --prefix=$HOME/.python/python{python_version} --enable-optimizations"
         fish = rf'echo "set -x PATH \$PATH \$HOME/.python/python{python_version}/bin" >> ~/.config/fish/config.fish'
 

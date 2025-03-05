@@ -150,6 +150,7 @@ AUR_PACKAGES = [
     "ptpython",  # улучшенный интерактивный Python-интерпретатор.
     "visual-studio-code-bin",  # редактор кода
     "auto-cpufreq",
+    "zen-browser-bin",
 ]
 
 GNOME_OFFICIAL_TOOLS = [
