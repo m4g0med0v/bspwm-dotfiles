@@ -1,4 +1,9 @@
 import os
+import sys
+
+parent_dir = os.path.join(os.path.dirname(__file__), "..")
+sys.path.append(parent_dir)
+
 import subprocess
 
 from logger import Logger, LoggerStatus
@@ -79,3 +84,8 @@ turbo = never
             Logger.add_record(f"[-] Error executing auto-cpufreq: {e}", status=LoggerStatus.ERROR)
         except Exception as e:
             Logger.add_record(f"[-] Error configuring CPU freq: {e}", status=LoggerStatus.ERROR)
+
+
+if __name__ == "__main__":
+    LaptopConfigure.configure_touchpad()
+    LaptopConfigure.install_cpufreq()

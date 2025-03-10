@@ -23,7 +23,7 @@ class FirefoxCustomize:
 class PythonBuilder:
     @staticmethod
     def build():
-        print("1) Enter the version of python you want to install ", end="")
+        print("1) Enter the version of python you want to install: ", end="")
         python_version = input()
         cpu_cores = int(os.cpu_count() * 0.5)
 
@@ -37,6 +37,7 @@ class PythonBuilder:
         os.system(f'{cd_download} && tar -xvf Python-{python_version}.tar.xz')
         os.system(f'{cd_download}/Python-{python_version} && {configure}')
         os.system(f'{cd_download}/Python-{python_version} && make -j{cpu_cores}')
+        os.system(f'{cd_download}/Python-{python_version} && sudo make install')
         os.system(fish)
         Logger.add_record(
             f"[+] Python {python_version} installed", status=LoggerStatus.SUCCESS

@@ -1,11 +1,11 @@
 import os
+from pathlib import Path
 
 import packages
 from logger import Logger, LoggerStatus
 
 from creators.daemons import Daemons
 from creators.drivers import GraphicDrivers
-from creators.laptop import LaptopConfigure
 from creators.patches import PatchSystemBugs
 from creators.software import AurBuilder, PythonBuilder
 
@@ -70,8 +70,8 @@ class SystemConfiguration:
         Logger.add_record(
             "[+] Configuring Laptop", status=LoggerStatus.SUCCESS
         )
-        LaptopConfigure.configure_touchpad()
-        LaptopConfigure.install_cpufreq()
+        laptop_path = Path().cwd() / "Builder/creators/laptop.py"
+        os.system(f"sudo python {laptop_path}")
 
     @staticmethod
     def __start_option_6():
